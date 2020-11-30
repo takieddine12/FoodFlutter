@@ -13,22 +13,20 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-   var foodList = new List<FoodModel>();
-   List<FoodModel> list = new List<FoodModel>();
 
-   Future<List<FoodModel>> fetchFoodCategories() async {
+   List<FoodModel> _list = new List<FoodModel>();
+
+   Future<FoodModel> fetchFoodCategories() async {
     var url = "https://www.themealdb.com/api/json/v1/1/categories.php";
     var response = await http.get(url);
 
-    if(response.statusCode == 200) {
-      foodList.add(json.decode(response.body));
-    }
-    return foodList;
+    if(response.statusCode != 200) return null;
+    return json.decode(response.body);
   }
   @override
   Widget build(BuildContext context) {
     fetchFoodCategories().then((value){
-      list.addAll(value);
+      _list.add(value);
     });
     return MaterialApp(
       home: DefaultTabController(
@@ -65,14 +63,14 @@ class MyApp extends StatelessWidget {
                         child: Column(
                             children : <Widget>[
                               Text(
-                                  list[index].categories[index].strCategory
+                                  _list[index].categories.last.strCategory
                               )
                             ]
                         ),
                       )
                   );
                 },
-                itemCount: list.length,
+                itemCount: _list.length,
               ),
               ListView.builder(
                 itemBuilder: (context , index)  {
