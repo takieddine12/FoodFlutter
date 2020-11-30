@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:ui';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sportapp/random/food_model.dart';
 
 void main() {
@@ -12,7 +14,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
 
    List<FoodModel> _list = new List<FoodModel>();
 
@@ -102,6 +103,41 @@ class MyApp extends StatelessWidget {
                 },
               )
             ],
+          ),
+          drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                DrawerHeader(
+                  child: Text("Food Drawer",
+                  style: TextStyle(
+                    color: Colors.amber,
+                  ),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.blue
+                  )
+                ),
+                ListTile(
+                  title: Text("Rate App"),
+                  onTap: (){
+                    Fluttertoast.showToast(
+                      msg: "Rate App Clicked",
+                      toastLength: Toast.LENGTH_LONG
+                    );
+                  },
+                ),
+                ListTile(
+                    title: Text("About App"),
+                    onTap: (){
+                      Fluttertoast.showToast(
+                          msg: "About App Clicked",
+                          toastLength: Toast.LENGTH_LONG
+                      );
+                    },
+                )
+              ],
+            ),
           ),
         ),
       ),
