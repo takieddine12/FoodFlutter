@@ -1,19 +1,19 @@
 
-import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sportapp/main.dart';
+
 
 void main(){
     runApp(new SplashScreen());
 }
 
 class SplashScreen extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
        home: Scaffold(
          body: Container(
